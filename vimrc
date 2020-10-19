@@ -28,10 +28,12 @@ set directory^=$HOME/.cache/vim/swap//
 if has('gui_running')
     set guioptions-=T
     set guioptions-=m
-    set guifont=Hack\ Nerd\ Font\ Mono\ 11
 endif
 
+set guifont=Hack\ 11
+
 if (has("nvim"))
+    " GuiFont Hack:h11
     let $nvim_tui_enable_true_color=1
     autocmd TermOpen * startinsert
 endif
@@ -47,10 +49,8 @@ set t_8f=[38;2;%lu;%lu;%lum
 autocmd BufNewFile,BufRead *.zdc set syntax=cpp | set filetype=cpp
 
 call plug#begin('~/.vim/plugged')
-    " Plug 'itchyny/lightline.vim'
+    Plug 'itchyny/lightline.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
-    Plug 'rakr/vim-one'
-    Plug 'morhetz/gruvbox'
 
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -59,12 +59,20 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'Raimondi/delimitMate'
     Plug 'vim-scripts/nextval'
-    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
+    Plug 'rakr/vim-one'
+    Plug 'morhetz/gruvbox'
+    Plug 'kristijanhusak/vim-hybrid-material'
+    Plug 'NLKNguyen/papercolor-theme'
+    Plug 'jacoborus/tender.vim'
+    Plug 'romainl/Apprentice'
+    Plug 'nanotech/jellybeans.vim'
+    Plug 'ajh17/Spacegray.vim'
 
 call plug#end()
 
 set background=dark
-colorscheme one
+colorscheme hybrid_reverse
 
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
@@ -73,22 +81,23 @@ let g:NERDDefaultAlign = 'left'
 au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = '../include/*/'
 au! BufEnter *.h let b:fswitchdst = 'cpp,c' | let b:fswitchlocs = '../../source/'
 
-" let g:lightline = { 'colorscheme': 'one', }
+let g:lightline = { 'colorscheme': 'jellybeans', }
 
 " Status-line
-set statusline=
-set statusline+=%#DiffAdd#
-set statusline+=\ %M "Modified? (display + when modified)
-set statusline+=\ %y "File type
-set statusline+=\ %r "Read only
-set statusline+=\ %F "File name (full path)
+" set statusline=
+" set statusline+=%#StatusLine#
+" set statusline+=\ %M "Modified? (display + when modified)
+" set statusline+=\ %y "File type
+" set statusline+=\ %r "Read only
+" set statusline+=\ %F "File name (full path)
 
-set statusline+=%= "Right align
-set statusline+=%#DiffChange#
+" set statusline+=%= "Right align
+" set statusline+=%#DiffText#
 
-set statusline+=\|\ %c:%l/%L
-set statusline+=\ %p%%
-set statusline+=\ [%n]\ 
+" set statusline+=\ %l/%L
+" set statusline+=\ %c
+" set statusline+=\ %p%%
+" set statusline+=\ [%n]\ 
 
 " Different cursor for insert/normal mode
 let &t_SI = "\e[5 q"
