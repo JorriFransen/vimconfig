@@ -12,7 +12,7 @@ set wildmenu
 set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=1
-set number
+" set number
 set cursorline
 set clipboard=unnamedplus
 
@@ -47,7 +47,7 @@ set t_8f=[38;2;%lu;%lu;%lum
 autocmd BufNewFile,BufRead *.zdc set syntax=cpp | set filetype=cpp
 
 call plug#begin('~/.vim/plugged')
-    Plug 'itchyny/lightline.vim'
+    " Plug 'itchyny/lightline.vim'
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'rakr/vim-one'
     Plug 'morhetz/gruvbox'
@@ -71,7 +71,22 @@ let g:NERDDefaultAlign = 'left'
 au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = '../include/*/'
 au! BufEnter *.h let b:fswitchdst = 'cpp,c' | let b:fswitchlocs = '../../source/'
 
-let g:lightline = { 'colorscheme': 'one', }
+" let g:lightline = { 'colorscheme': 'one', }
+
+" Status-line
+set statusline=
+set statusline+=%#DiffAdd#
+set statusline+=\ %M "Modified? (display + when modified)
+set statusline+=\ %y "File type
+set statusline+=\ %r "Read only
+set statusline+=\ %F "File name (full path)
+
+set statusline+=%= "Right align
+set statusline+=%#DiffChange#
+
+set statusline+=\|\ %c:%l/%L
+set statusline+=\ %p%%
+set statusline+=\ [%n]\ 
 
 " Different cursor for insert/normal mode
 let &t_SI = "\e[5 q"
