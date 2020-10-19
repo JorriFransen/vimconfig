@@ -59,6 +59,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'Raimondi/delimitMate'
     Plug 'vim-scripts/nextval'
+    Plug 'glacambre/firenvim', { 'do': { _ -> firenvim#install(0) } }
+
 call plug#end()
 
 set background=dark
