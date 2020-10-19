@@ -150,6 +150,11 @@ noremap <leader>bb :Buffers<CR>
 noremap <leader>g :Rg<CR>
 
 map <leader>; <plug>NERDCommenterToggle
+"
+" Move lines up or down
+xnoremap K :move '<-2<CR>gv-gv
+xnoremap J :move '>+1<CR>gv-gv
+
 
 " Delimate additions
 inoremap {<CR> {<CR>}<Esc>O
