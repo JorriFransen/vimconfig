@@ -12,7 +12,7 @@ set wildmenu
 set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=1
-" set number
+set number
 set cursorline
 set clipboard=unnamedplus
 
@@ -72,7 +72,7 @@ call plug#begin('~/.vim/plugged')
 call plug#end()
 
 set background=dark
-colorscheme hybrid_reverse
+colorscheme one
 
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
@@ -81,7 +81,7 @@ let g:NERDDefaultAlign = 'left'
 au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = '../include/*/'
 au! BufEnter *.h let b:fswitchdst = 'cpp,c' | let b:fswitchlocs = '../../source/'
 
-let g:lightline = { 'colorscheme': 'jellybeans', }
+let g:lightline = { 'colorscheme': 'one', }
 
 " Status-line
 " set statusline=
