@@ -12,9 +12,15 @@ set wildmenu
 set laststatus=2
 set encoding=utf-8
 set ttimeoutlen=1
+set timeoutlen=500
 set number
 set cursorline
 set clipboard=unnamedplus
+
+" set cmdheight=2
+set mouse=a
+set splitbelow
+set splitright
 
 set path=.,,*
 set wildignore=*.o,*~
@@ -48,9 +54,13 @@ set t_8f=[38;2;%lu;%lu;%lum
 " Treat Zodiac/.zdc files as cpp files
 autocmd BufNewFile,BufRead *.zdc set syntax=cpp | set filetype=cpp
 
+set completeopt=longest,menuone
+
 call plug#begin('~/.vim/plugged')
-    Plug 'itchyny/lightline.vim'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'octol/vim-cpp-enhanced-highlight'
+    Plug 'justinmk/vim-sneak'
 
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -59,6 +69,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'preservim/nerdcommenter'
     Plug 'Raimondi/delimitMate'
     Plug 'vim-scripts/nextval'
+    Plug 'tpope/vim-fugitive'
+    Plug 'liuchengxu/vim-which-key'
 
     Plug 'rakr/vim-one'
     Plug 'morhetz/gruvbox'
@@ -68,11 +80,14 @@ call plug#begin('~/.vim/plugged')
     Plug 'romainl/Apprentice'
     Plug 'nanotech/jellybeans.vim'
     Plug 'ajh17/Spacegray.vim'
-
+    Plug 'christianchiarulli/nvcode.vim'
 call plug#end()
 
+let g:sneak#label = 1
+
 set background=dark
-colorscheme one
+" colorscheme one
+colorscheme nvcode
 
 let g:NERDSpaceDelims = 1
 let g:NERDDefaultAlign = 'left'
@@ -81,7 +96,22 @@ let g:NERDDefaultAlign = 'left'
 au! BufEnter *.cpp let b:fswitchdst = 'h,hpp' | let b:fswitchlocs = '../include/*/'
 au! BufEnter *.h let b:fswitchdst = 'cpp,c' | let b:fswitchlocs = '../../source/'
 
-let g:lightline = { 'colorscheme': 'one', }
+
+set t_Co=256
+set noshowmode
+
+" let g:airline_theme='deus'
+let g:airline_theme='nvcode'
+let g:airline_powerline_fonts=1
+let g:airline_left_sep = ''
+let g:airline_right_sep = ''
+let g:airline_right_alt_sep = ''
+let g:airline_extensions = ['branch', 'tabline', 'whitespace']
+let g:airline#extensions#default#layout = [['a', 'b', 'c'], ['x', 'y', 'z', 'warning', 'error']]
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 
 " Status-line
 " set statusline=
@@ -97,7 +127,7 @@ let g:lightline = { 'colorscheme': 'one', }
 " set statusline+=\ %l/%L
 " set statusline+=\ %c
 " set statusline+=\ %p%%
-" set statusline+=\ [%n]\ 
+" set statusline+=\ [%n]\
 
 " Different cursor for insert/normal mode
 let &t_SI = "\e[5 q"
@@ -120,6 +150,7 @@ endfunc
 inoremap jj <esc>
 
 let mapleader = "\<Space>"
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 " Tab navigation
 noremap <C-h> :tabp<CR>
@@ -134,6 +165,7 @@ tmap <C-h> <C-\><C-n>:tabp<CR>
 tmap <C-l> <C-\><C-n>:tabn<CR>
 
 " Window navigation
+noremap <leader>wq :wincmd q<CR>
 noremap <leader>wh :wincmd h<CR>
 noremap <leader>wl :wincmd l<CR>
 noremap <leader>wj :wincmd j<CR>
@@ -153,10 +185,16 @@ noremap ,ga :w<CR>:FSHere<CR>
 noremap <C-p> :GFiles<CR>
 noremap <leader>pp :GFiles<CR>
 noremap <leader>pf :FZF<CR>
-noremap <leader>f :find 
-noremap <leader>b :buffer 
-noremap <leader>bb :Buffers<CR> 
-noremap <leader>g :Rg<CR>
+noremap <leader>f :find
+noremap <leader>bs :buffer
+noremap <leader>bb :Buffers<CR>
+
+noremap <leader>gg :Rg<CR>
+noremap <leader>gs :Gstatus<CR>
+noremap <leader>gc :Git commit<CR>
+noremap <leader>gd :Git diff<CR>
+noremap <leader>gp :Git push<CR>
+
 
 map <leader>; <plug>NERDCommenterToggle
 "
@@ -164,6 +202,9 @@ map <leader>; <plug>NERDCommenterToggle
 xnoremap K :move '<-2<CR>gv-gv
 xnoremap J :move '>+1<CR>gv-gv
 
+" Sneak
+nmap <leader>m <Plug>Sneak_s
+nmap <leader>M <Plug>Sneak_S
 
 " Delimate additions
 inoremap {<CR> {<CR>}<Esc>O
