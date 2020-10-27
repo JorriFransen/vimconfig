@@ -190,7 +190,7 @@ noremap <leader>bs :buffer
 noremap <leader>bb :Buffers<CR>
 
 noremap <leader>gg :Rg<CR>
-noremap <leader>gs :Gstatus<CR>
+noremap <leader>gs :vert Gstatus<CR>
 noremap <leader>gc :Git commit<CR>
 noremap <leader>gd :Git diff<CR>
 noremap <leader>gp :Git push<CR>
