@@ -1,5 +1,5 @@
 
-set shiftwidth=4 tabstop=4 expandtab 
+set shiftwidth=4 tabstop=4 expandtab
 
 setlocal path=.,,**
 
@@ -11,9 +11,9 @@ function! Compile()
     " call quickfix#open()
     " silent make
 
+
     let g:asyncrun_open = 14
-    AsyncRun cmake --build build
+    AsyncRun echo ninja: Entering directory build&& cmake --build build
     redraw!
-    echo "Done!!!"
 endfunction
 

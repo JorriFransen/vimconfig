@@ -34,9 +34,12 @@ set directory^=$HOME/.cache/vim/swap//
 if has('gui_running')
     set guioptions-=T
     set guioptions-=m
+else
+    hi cursorline cterm=none ctermbg=none ctermfg=none
 endif
 
-set guifont=Hack\ 11
+set guifont=consolas:h12:cANSI
+" set guifont=Hack\ 11
 
 if (has("nvim"))
     " GuiFont Hack:h11
@@ -47,9 +50,6 @@ endif
 if (has("termguicolors"))
     set termguicolors
 endif
-
-set t_8b=[48;2;%lu;%lu;%lum
-set t_8f=[38;2;%lu;%lu;%lum
 
 " Treat Zodiac/.zdc files as cpp files
 autocmd BufNewFile,BufRead *.zdc set syntax=cpp | set filetype=cpp
@@ -62,6 +62,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'justinmk/vim-sneak'
 
+    Plug 'PProvost/vim-ps1'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -152,6 +153,8 @@ inoremap jj <esc>
 let mapleader = "\<Space>"
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
+noremap <leader>qq :wqa<CR>
+
 " Tab navigation
 noremap <C-h> :tabp<CR>
 noremap <C-l> :tabn<CR>
@@ -174,9 +177,9 @@ noremap <leader>ws :wincmd s <CR> :wincmd j<CR> :GFiles<CR>
 noremap <leader>wv :wincmd v <CR> :wincmd l<CR> :GFiles<CR>
 
 nnoremap <F5> :call Compile()<CR>
-nnoremap <leader>cc :call Compile()<CR>
+nmap <leader>cc :call Compile()<CR>
 inoremap <F5> <esc>: call Compile()<CR>
-" inoremap <leader>cc <esc>: call Compile()<CR>
+" imap <leader>cc <esc>: call Compile()<CR>
 
 noremap <leader>cd :call quickfix#toggle()<CR>
 noremap <leader>en :cn<CR>
