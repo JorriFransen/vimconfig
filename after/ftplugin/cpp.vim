@@ -14,6 +14,5 @@ function! Compile()
     let g:asyncrun_open = 14
     AsyncRun cmake --build build
     redraw!
-    echo "Done!!!"
 endfunction
 
