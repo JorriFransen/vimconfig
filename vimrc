@@ -67,6 +67,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'justinmk/vim-sneak'
 
+    Plug 'OmniSharp/omnisharp-vim'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'skywind3000/asyncrun.vim'
@@ -77,8 +78,8 @@ call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
     Plug 'vim-scripts/nextval'
     Plug 'tpope/vim-fugitive'
-    " Plug 'liuchengxu/vim-which-key'
     Plug 'norcalli/nvim-colorizer.lua'
+    Plug 'beyondmarc/hlsl.vim'
 
     Plug 'rakr/vim-one'
     Plug 'morhetz/gruvbox'
@@ -88,8 +89,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'romainl/Apprentice'
     Plug 'nanotech/jellybeans.vim'
     Plug 'ajh17/Spacegray.vim'
-    Plug 'christianchiarulli/nvcode.vim'
+    Plug 'ChristianChiarulli/nvcode-color-schemes.vim'
 call plug#end()
+
+let g:OmniSharp_server_use_mono = 1
 
 source $HOME/.config/nvim/plug-config/coc.vim
 
