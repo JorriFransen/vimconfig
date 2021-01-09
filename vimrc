@@ -54,6 +54,9 @@ set t_8f=[38;2;%lu;%lu;%lum
 autocmd BufNewFile,BufRead *.zdc set filetype=zdc | set syntax=cpp
 autocmd FileType zdc let b:coc_suggest_disable = 1
 
+" .compute files are hlsl files
+autocmd BufNewFile,BufRead *.compute set filetype=hlsl | set syntax=hlsl
+
 " set completeopt=noinsert,menuone
 
 let mapleader = "\<Space>"
