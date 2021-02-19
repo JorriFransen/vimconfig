@@ -17,6 +17,11 @@ set cursorline
 set clipboard=unnamedplus
 
 set mouse=a
+"Fix scrolling down in st
+if &term =~ '^st\($\|-\)'
+  set ttymouse=sgr
+endif
+
 set splitbelow
 set splitright
 
@@ -44,8 +49,9 @@ if (has("termguicolors"))
     set termguicolors
 endif
 
+set guifont=FiraCode\ Nerd\ Font\ Mono:h11
 " set guifont=FiraMono\ Nerd\ Font:h11
-set guifont=BitstreamVeraSansMono\ Nerd\ Font:h11
+" set guifont=BitstreamVeraSansMono\ Nerd\ Font:h11
 
 set t_8b=[48;2;%lu;%lu;%lum
 set t_8f=[38;2;%lu;%lu;%lum
@@ -67,9 +73,10 @@ call plug#begin('~/.vim/plugged')
     Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'justinmk/vim-sneak'
 
+    Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
     Plug 'OmniSharp/omnisharp-vim'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-    Plug 'nvim-treesitter/nvim-treesitter'
+    " Plug 'nvim-treesitter/nvim-treesitter'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -78,9 +85,9 @@ call plug#begin('~/.vim/plugged')
     Plug 'Raimondi/delimitMate'
     Plug 'vim-scripts/nextval'
     Plug 'tpope/vim-fugitive'
-    Plug 'norcalli/nvim-colorizer.lua'
     Plug 'beyondmarc/hlsl.vim'
 
+    Plug 'arcticicestudio/nord-vim'
     Plug 'rakr/vim-one'
     Plug 'morhetz/gruvbox'
     Plug 'kristijanhusak/vim-hybrid-material'
@@ -99,15 +106,21 @@ source $HOME/.config/nvim/plug-config/coc.vim
 " Fix coc/delimate binding
 imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Plug>delimitMateCR"
 
-lua << EOF
-require'nvim-treesitter.configs'.setup {
-  -- ensure_installed = "maintained",
-  highlight = {
-    enable = true,              -- false will disable the whole extension
-    disable = {},  -- list of language that will be disabled
-  },
-}
-EOF
+" lua << EOF
+" require'nvim-treesitter.configs'.setup {
+"   ensure_installed = "maintained",
+"   highlight = {
+"     enable = true,              -- false will disable the whole extension
+"     disable = {},  -- list of language that will be disabled
+"   },
+"   indent = {
+"     enabled = false,
+"   },
+"   incremental_selection = {
+"     enabled = false,
+"   },
+" }
+" EOF
 
 let g:sneak#label = 1
 
@@ -224,15 +237,10 @@ map <leader>T :call Open_Terminal()<CR>
 map <leader>C :tabe $RC<CR>
 map <leader>R :w<CR>:so %<CR>
 
+let g:Hexokinase_highlighters = [ 'background' ]
+
 set exrc
 set secure
-
-lua << EOF
-require 'colorizer'.setup {
-  'vim';
-  'vimrc';
-}
-EOF
 
 " Neovim terminal colors
 if has("nvim")
