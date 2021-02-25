@@ -39,6 +39,9 @@ if has('gui_running')
     set guioptions-=m
 endif
 
+let &t_SI = "\033[5 q"
+let &t_SR = "\033[3 q"
+let &t_EI = "\033[2 q"
 
 if (has("nvim"))
     let $nvim_tui_enable_true_color=1
@@ -77,6 +80,7 @@ call plug#begin('~/.vim/plugged')
     Plug 'OmniSharp/omnisharp-vim'
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
     " Plug 'nvim-treesitter/nvim-treesitter'
+    Plug 'octol/vim-cpp-enhanced-highlight'
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
