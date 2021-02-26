@@ -17,9 +17,12 @@ set cursorline
 set clipboard=unnamedplus
 
 set mouse=a
-"Fix scrolling down in st
-if &term =~ '^st\($\|-\)'
-  set ttymouse=sgr
+
+if has("nvim")
+    "Fix scrolling down in st
+    if &term =~ '^st\($\|-\)'
+      set ttymouse=sgr
+    endif
 endif
 
 set splitbelow
@@ -78,9 +81,12 @@ call plug#begin('~/.vim/plugged')
 
     Plug 'rrethy/vim-hexokinase', { 'do': 'make hexokinase' }
     Plug 'OmniSharp/omnisharp-vim'
+
     Plug 'neoclide/coc.nvim', { 'branch': 'release' }
-    " Plug 'nvim-treesitter/nvim-treesitter'
-    Plug 'octol/vim-cpp-enhanced-highlight'
+    " Plug 'jackguo380/vim-lsp-cxx-highlight'"
+    Plug 'nvim-treesitter/nvim-treesitter'
+    " Plug 'octol/vim-cpp-enhanced-highlight'
+
     Plug 'skywind3000/asyncrun.vim'
     Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
     Plug 'junegunn/fzf.vim'
@@ -110,21 +116,21 @@ source $HOME/.config/nvim/plug-config/coc.vim
 " Fix coc/delimate binding
 imap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<Plug>delimitMateCR"
 
-" lua << EOF
-" require'nvim-treesitter.configs'.setup {
-"   ensure_installed = "maintained",
-"   highlight = {
-"     enable = true,              -- false will disable the whole extension
-"     disable = {},  -- list of language that will be disabled
-"   },
-"   indent = {
-"     enabled = false,
-"   },
-"   incremental_selection = {
-"     enabled = false,
-"   },
-" }
-" EOF
+lua <<EOF
+require'nvim-treesitter.configs'.setup {
+  ensure_installed = "maintained",
+  highlight = {
+    enable = true,              -- false will disable the whole extension
+    disable = {},  -- list of language that will be disabled
+  },
+  indent = {
+    enabled = false,
+  },
+  incremental_selection = {
+    enabled = false,
+  },
+}
+EOF
 
 let g:sneak#label = 1
 
